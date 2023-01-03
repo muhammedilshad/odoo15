@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="add_website_button" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//div[hasclass('o_download_pdf')]" position="after">
+            <div id="Quotation_confirm_btn">
+                <button name="quotation_confirm_button" type="action" class="btn btn-primary change_stage_action">Confirm Quotation
+                </button>
+                <input id="current_sale_order_id" type="hidden" t-att-value="sale_order.id"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
