@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="college_report_view" model="ir.actions.act_window">
+        <field name="name">Marksheet Reporting</field>
+        <field name="res_model">college.marksheet.reporting</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+<!--    student wise report action -->
+
+     <record id="action_report_std_wise_marksheet" model="ir.actions.report">
+            <field name="name">Marksheet Reporting</field>
+            <field name="model">college.marksheet.reporting</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">college_erp.std_wise_report_template</field>
+            <field name="report_file">college_erp.std_wise_report_template</field>
+            <field name ="print_report_name">'Marksheet Report - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="model_college_marksheet_reporting"/>
+            <field name="binding_type">report</field>
+     </record>
+<!--        class wise report action-->
+
+     <record id="action_report_class_wise_marksheet" model="ir.actions.report">
+            <field name="name">Marksheet Reporting</field>
+            <field name="model">college.marksheet.reporting</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">college_erp.class_wise_report_template</field>
+            <field name="report_file">college_erp.class_wise_report_template</field>
+            <field name ="print_report_name">'Marksheet Report - %s' % (object.name))</field>
+            <field name="binding_model_id" ref="model_college_marksheet_reporting"/>
+            <field name="binding_type">report</field>
+     </record>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="mark_sheet_form_college_erp" model="ir.ui.view">
+        <field name="name">mark sheet</field>
+        <field name="model">mark.sheet.college.erp</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <sheet>
+                    <group>
+                     <field name = "ms_student_id"/>
+                     <field name = "ms_exam_id"/>
+                     <field name = "mark_sheet_Class_id"/>
+                     <field name = "mark_sheet_Course_id"/>
+                     <field name = "mark_sheet_Semester_id"/>
+                     <field name = "Pass_or_Fail" widget="boolean_toggle"/>
+                     <field name = "rank"/>
+                     <field name = "total_get_mark" invisible="1"/>
+                     <field name = "max_mark_total" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Subjects">
+                            <field name = "marksheet_subject_ids">
+                            <tree>
+                                <field name ="marksheet_subject_name_id"/>
+                                <field name ="marksheet_subject_maximum_mark"/>
+                                <field name ="marksheet_subject_pass_mark"/>
+                                <field name="marksheet_subject_mark" sum="Total"/>
+                                <field name="marksheet_subject_pass_or_fail" widget="boolean_toggle"/>
+                            </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+     </record>
+
+      <record id="mark_sheet_tree_college_erp" model="ir.ui.view">
+        <field name="name">mark sheet tree</field>
+        <field name="model">mark.sheet.college.erp</field>
+        <field name="arch" type="xml">
+            <tree string="tree">
+                <field name = "ms_student_id"/>
+                <field name = "ms_exam_id"/>
+                <field name = "Pass_or_Fail"/>
+            </tree>
+        </field>
+      </record>
+</odoo>

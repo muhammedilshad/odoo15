@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="class_form_college_erp" model="ir.ui.view">
+        <field name="name">Class form</field>
+        <field name="model">class.college.erp</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_of_class"/>
+                            <field name="semester_for_class_id"/>
+                            <field name="course_of_class_id"/>
+                        </group>
+                        <group>
+
+                            <field name="academic_year_for_class_id"/>
+                            <field name="promotion_class"/>
+                         </group>
+                    </group>
+                    <notebook>
+                        <page string="Matching students">
+                            <field name="student_list_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="class_tree_college_erp" model="ir.ui.view">
+        <field name="name">Class tree</field>
+        <field name="model">class.college.erp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_of_class"/>
+                <field name="course_of_class_id"/>
+                <field name="semester_for_class_id"/>
+                <field name="academic_year_for_class_id"/>
+                <field name="promotion_class"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

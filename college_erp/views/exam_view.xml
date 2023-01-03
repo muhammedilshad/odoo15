@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="exam_form_college_erp" model="ir.ui.view">
+        <field name="name">exam form</field>
+        <field name="model">exam.college.erp</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirm,completed"/>
+                    <button name="generate_mark_sheet" type="object" string="Generate Mark Sheet"
+                            class="btn-primary" data-hotkey="g"/>
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button string="Validation" class="oe_stat_button" type="object" name="smart_button" icon="fa-pencil-square-o"
+                                attrs="{'invisible':[('count_valuation','=', 0)]}">
+                            <field string="Exam" name="count_valuation" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <group>
+
+                        <group>
+                            <field name="exam_name"/>
+                            <field name="exam_type"/>
+                            <field name="exam_class" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="exam_semester_id"/>
+                            <field name="exam_course"/>
+                        </group>
+                        <group>
+                            <field name="exam_start_date"/>
+                            <field name="exam_end_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="papers">
+                            <group>
+                                <field name="exam_subject_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

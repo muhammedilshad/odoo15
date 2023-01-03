@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="std_wise_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <center>
+                        <h2>Student wise report of marksheet</h2>
+                        <h3 t-esc="student_id"/>
+                        <h5 t-esc="s_class"/>
+                    </center>
+                    <div>
+                        <label>
+                            <b>Exam Type:</b>
+                        </label>
+                        <t t-esc="exam_type"/>
+                    </div>
+                    <div>
+                        <label>
+                            <b>Result:</b>
+                        </label>
+                        <t t-esc="r_result"/>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Subjects</th>
+                            <t t-if="not student_id">
+                                <th>Students</th>
+                            </t>
+                            <th>Mark</th>
+                            <th>Pass Mark</th>
+                            <th>Result</th>
+                        </tr>
+                        <t t-foreach="query" t-as="i">
+                            <tr>
+                                <td>
+                                    <span t-esc="i['syllabus_subject']"/>
+                                </td>
+                                <t t-if="not student_id">
+                                    <td>
+                                        <span t-esc="i['first_name']"/>
+                                    </td>
+                                </t>
+                                <t t-if="not i['marksheet_subject_pass_or_fail']">
+                                </t>
+
+                                <td>
+                                    <span t-esc="i['marksheet_subject_mark']"/>
+                                </td>
+                                <td>
+                                    <span t-esc="i['syllabus_pass_mark']"/>
+                                </td>
+                                <t t-if="i['marksheet_subject_pass_or_fail']">
+                                    <td>
+                                        <span>Pass</span>
+                                    </td>
+                                </t>
+                                <t t-if="not i['marksheet_subject_pass_or_fail']">
+                                    <td>
+                                        <span>Fail</span>
+                                    </td>
+                                </t>
+
+                            </tr>
+
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="class_wise_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <center>
+                        <h2>
+                            <b>Class wise report of marksheet</b>
+                        </h2>
+                        <h3 t-esc="s_class"/>
+                    </center>
+                </div>
+                <div>
+                    <label>
+                        <b>Type Of Exam:</b>
+                    </label>
+                    <t t-esc="exam_type"/>
+                    <br/>
+                    <label>
+                        <b>Total:</b>
+                    </label>
+                    <t t-esc="total_student"/>
+                    <br/>
+                    <label>
+                        <b>Pass:</b>
+                    </label>
+                    <t t-esc="pass_student"/>
+                    <br/>
+                    <label>
+                        <b>Fail:</b>
+                    </label>
+                    <t t-esc="fail_stud"/>
+                    <br/>
+                    <label>
+                        <b>Ratio:</b>
+                    </label>
+                    <t t-esc="r_ratio"/>
+                    <label>%</label>
+                    <br/>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <t t-foreach="sub_data" t-as="sub">
+                                <th t-esc="sub['syllabus_subject']"/>
+                            </t>
+                            <th>Obtained Mark</th>
+                            <th>Total Mark</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="stud_data" t-as="stud">
+                            <td>
+                                <span t-esc="stud['first_name']"/>
+                            </td>
+                            <t t-foreach="mark_data" t-as="mark">
+                                <t t-if="stud['id']==mark['id']">
+                                    <td>
+                                        <span t-esc="mark['marksheet_subject_mark']"/>
+                                    </td>
+                                </t>
+                            </t>
+                            <td>
+                                <span t-esc="stud['total_get_mark']"/>
+                            </td>
+                            <td>
+                                <span t-esc="stud['max_mark_total']"/>
+                            </td>
+                            <t t-if="stud['Pass_or_Fail']">
+                                <td>
+                                    <span>Pass</span>
+                                </td>
+                            </t>
+                            <t t-if="not stud['Pass_or_Fail']">
+                                <td>
+                                    <span>Fail</span>
+                                </td>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

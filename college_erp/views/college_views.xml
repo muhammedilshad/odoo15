@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    form view for student-->
+    <record id="college_student_model_action" model="ir.actions.act_window">
+        <field name="name">Student Details</field>
+        <field name="res_model">student.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="sequence_student_college" model="ir.sequence">
+        <field name="name">Student Sequence</field>
+        <field name="code">student_college_erp</field>
+        <field name="prefix">Adm/no/</field>
+    </record>
+
+    <record id="student_form_college_erp" model="ir.ui.view">
+        <field name="name">college form</field>
+        <field name="model">student.college.erp</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name" placeholder="First name"/>
+                            <field name="last_name"/>
+                            <field name="father"/>
+                            <field name="mother"/>
+                            <field name="admission_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="contact">
+                            <group>
+                                <group>
+                                    <field name="communication_address"/>
+                                </group>
+                                <group>
+                                    <field name="same_as_communication_address"/>
+                                </group>
+                                <group attrs="{'invisible': [('same_as_communication_address', '=', True)]}">
+                                    <field name="permanent_address"/>
+                                </group>
+                                <group>
+                                    <field name="phone"/>
+                                </group>
+                                <group>
+                                    <field name="email"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="college details">
+                            <group>
+                                <group>
+                                    <field name="student_course_id"/>
+                                    <field name="academic_year_id"/>
+                                    <field name="semester_id"/>
+                                </group>
+                                <group>
+                                    <field name="student_class_id"/>
+                                    <field name="exam_flag"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--end of student form-->
+
+    <!--    tree view of student-->
+    <record id="tree_college_erp" model="ir.ui.view">
+        <field name="name">student details</field>
+        <field name="model">student.college.erp</field>
+        <field name="arch" type="xml">
+            <tree string="tree view">
+                <field name="admission_no"/>
+                <field name="admission_date"/>
+                <field name="first_name"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="student_class_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--     end of student tree view-->
+
+    <!--    admission form view-->
+    <record id="admission_seq" model="ir.sequence">
+        <field name="name">Admission Sequence</field>
+        <field name="code">admission.college.erp</field>
+        <field name="prefix">adm/no/</field>
+    </record>
+
+    <record id="college_admission_model_action" model="ir.actions.act_window">
+        <field name="name">Admission</field>
+        <field name="res_model">admission.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="college_admission_model_action_view_form" model="ir.ui.view">
+        <field name="name">Admission form</field>
+        <field name="model">admission.college.erp</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <header>
+                    <button name="confirm_button" type="object" string="Confirm"
+                            states="draft" class="btn-primary" data-hotkey="g"
+                            attrs="{'invisible': [('state','!=','draft'),('state','!=','application')]}"/>
+                    <button name="reject_button" type="object" string="Rejected"
+                            states="application" class="btn-primary" data-hotkey="g"
+                            attrs="{'invisible': [('state','!=','application')]}"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,application,approved,done,rejected"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="first_name" required="True"/>
+                            <field name="last_name"/>
+                            <field name="father"/>
+                        </group>
+                        <group>
+                            <field name="mother"/>
+                            <field name="phone"/>
+                            <field name="email" required="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Details">
+                            <group>
+                                <group>
+                                    <field name="communication_address" required="True"/>
+                                </group>
+                                <group>
+                                    <field name="same_as_communication_address"/>
+                                </group>
+                                <group attrs="{'invisible': [('same_as_communication_address', '=', True)]}">
+                                    <field name="permanent_address"/>
+                                </group>
+                                <!--                                <group>-->
+                                <!--                                    <field name="admission_no" required="True"/>-->
+                                <!--                                </group>-->
+                                <group>
+                                    <field name="date_of_application"/>
+                                </group>
+                                <group>
+                                    <field name="course_id" options="{'no_create': True, 'no_open': True}"/>
+                                </group>
+                                <group>
+                                    <field name="academic_year"/>
+                                </group>
+                                <group>
+                                    <field name="previous_educational_qualification"/>
+                                </group>
+                                <group>
+                                    <field name="educational_institute"/>
+                                </group>
+                                <group>
+                                    <field name="transfer_certificate"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!--end of admission form view-->
+
+    <!--admission tree view-->
+
+
+    <record id="college_admission_model_action_view_tree" model="ir.ui.view">
+        <field name="name">admission tree</field>
+        <field name="model">admission.college.erp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="admission_no"/>
+                <field name="first_name"/>
+                <field name="father"/>
+                <field name="mother"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="course_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <!-- end of admission tree view-->
+
+
+    <!--    course form view-->
+
+    <record id="college_course_model_action" model="ir.actions.act_window">
+        <field name="name">Course</field>
+        <field name="res_model">course.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="c_form_college_erp" model="ir.ui.view">
+        <field name="name">Course form</field>
+        <field name="model">course.college.erp</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="category"/>
+                        <field name="number_of_semester"/>
+                        <field name="duration"/>
+                    </group>
+                    <notebook>
+                        <page string="semester">
+                            <group>
+                                <field name="course_sem_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    tree view of course-->
+
+    <record id="college_course_tree_view" model="ir.ui.view">
+        <field name="name">course tree</field>
+        <field name="model">course.college.erp</field>
+        <field name="arch" type="xml">
+            <tree string="course tree">
+                <field name="name"/>
+                <field name="category"/>
+                <field name="duration"/>
+                <field name="number_of_semester"/>
+            </tree>
+        </field>
+    </record>
+    <!--     end tree view of course-->
+
+
+    <!--form view semester-->
+
+
+    <record id="college_semester_model_action" model="ir.actions.act_window">
+        <field name="name">Semester</field>
+        <field name="res_model">semester.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="college_semester_form_view" model="ir.ui.view">
+        <field name="name">semester form</field>
+        <field name="model">semester.college.erp</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="number_of_semester"/>
+                        <field name="sem_course_id"/>
+                        <field name="sem_name"/>
+                    </group>
+                    <notebook>
+                        <page string="Syllabus">
+                            <field name="sem_syllabus_ids">
+                                <tree editable="bottom">
+                                    <field name="syllabus_subject"/>
+                                    <field name="syllabus_maximum_mark"/>
+                                    <field name="syllabus_pass_mark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--end of semester form view -->
+
+    <!--    semester tree view-->
+    <record id="college_semester_tree_view" model="ir.ui.view">
+        <field name="name">semester tree</field>
+        <field name="model">semester.college.erp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="number_of_semester"/>
+                <field name="sem_course_id"/>
+                <field name="sem_name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- End of semester tree view-->
+
+
+    <!--    SYLLABUS FORM-->
+
+
+    <record id="college_syllabus_model_action" model="ir.actions.act_window">
+        <field name="name">Syllabus</field>
+        <field name="res_model">syllabus.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="college_syllabus_view_form" model="ir.ui.view">
+        <field name="name">Syllabus form</field>
+        <field name="model">syllabus.college.erp</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="syllabus_subject"/>
+                            <field name="syllabus_maximum_mark"/>
+                            <field name="syllabus_pass_mark"/>
+                            <!--                        <field name="syllabus_mark"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!--    syllabus tree-->
+
+    <record id="college_syllabus_tree_view" model="ir.ui.view">
+        <field name="name">syllabus tree</field>
+        <field name="model">syllabus.college.erp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="syllabus_subject"/>
+                <field name="syllabus_maximum_mark"/>
+                <field name="syllabus_pass_mark"/>
+            </tree>
+        </field>
+    </record>
+    <!--  End of syllabus tree view -->
+
+    <!--email template for got admission-->
+
+    <record id="email_template_got_admission" model="mail.template">
+        <field name="name">MY TEMPLATE</field>
+        <field name="model_id" ref="college_erp.model_admission_college_erp"/>
+        <field name="email_to">{{object.email}}</field>      <!--   email=admission's email field name-->
+        <field name="subject">Congratulation you have got admission</field>
+        <field name="body_html" type="html">
+            <div style="margin:0px; padding:0px font size:15px">
+                <p>
+                    Dear<t t-out="object.first_name"/>,
+                    <br/>
+                    <br/>
+                    This is for informing that you have got admission on college. your admission number is
+                    <t t-out="object.admission_no"/>
+                    and your admission date is
+                    <t t-out="object.date_of_application"/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    Thank you
+                    <br/>
+                    <br/>
+                    <br/>
+                    Regards,
+                    ABC College canada
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <!-- End of email template-->
+
+    <!--    template for rejection-->
+
+
+    <record id="email_template_got_rejected" model="mail.template">
+        <field name="name">MY TEMPLATE</field>
+        <field name="model_id" ref="college_erp.model_admission_college_erp"/>
+        <field name="email_to">{{object.email}}</field>      <!--   email=admission's email field name-->
+        <field name="subject">Thank you for your application.We are unable to give you an admission</field>
+        <field name="body_html" type="html">
+            <div style="margin:0px; padding:0px font size:15px">
+                <p>
+                    Dear<t t-out="object.first_name"/>,
+                    <br/>
+                    This is for informing that you haven't got admission on our college. Your application has been
+                    thoroughly reviewed by the admission committee but did not pass the final review just because of
+                    limited
+                    number of the seats against the program. Please note that this program is highly competitive, and
+                    this
+                    decision doesn’t question your research quality at all.
+                    <br/>
+                    <br/>
+
+                    Best of luck for your future
+                    <br/>
+                    <br/>
+
+                    Prof. Jiao Tong
+                    International Students Office
+                    Tsinghua University
+                    Thank you
+                </p>
+            </div>
+        </field>
+    </record>
+
+    <record id="college_exam_model_action" model="ir.actions.act_window">
+        <field name="name">Exam details</field>
+        <field name="res_model">exam.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="college_mark_sheet_subjects_model_action" model="ir.actions.act_window">
+        <field name="name">mark sheet</field>
+        <field name="res_model">mark.sheet.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="college_promotion_model_action" model="ir.actions.act_window">
+        <field name="name">Promotion</field>
+        <field name="res_model">promotion.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="college_class_model_action" model="ir.actions.act_window">
+        <field name="name">Class</field>
+        <field name="res_model">class.college.erp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--   end of  template for rejection-->
+
+    <menuitem id="college_erp_root" name="College Erp"/>
+    <menuitem id="college_student_model_view" name="Student" parent="college_erp_root"
+              action="college_student_model_action" sequence="1"/>
+
+    <menuitem id="college_erp_exam_tab" name="Examination" parent="college_erp_root" sequence="2"/>
+    <menuitem id="college_erp_exam_menu" name="Exam" parent="college_erp_exam_tab"
+              action="college_exam_model_action" sequence="1"/>
+    <menuitem id="college_erp_marksheet_menu" name="Mark sheet" parent="college_erp_exam_tab"
+              action="college_mark_sheet_subjects_model_action" sequence="2"/>
+    <menuitem id="college_erp_promotion_menu" name="Promotion" parent="college_erp_exam_tab"
+              action="college_promotion_model_action" sequence="3"/>
+
+    <menuitem id="college_erp_confi_tab" name="Configuration" parent="college_erp_root" sequence="4"/>
+    <menuitem id="college_erp_confi_sub" name="Course" parent="college_erp_confi_tab"
+              action="college_course_model_action" sequence="1"/>
+    <menuitem id="college_erp_admission_menu" name="Admission" parent="college_erp_confi_tab"
+              action="college_admission_model_action" sequence="2"/>
+    <menuitem id="college_erp_semester_menu" name="Semester" parent="college_erp_confi_tab"
+              action="college_semester_model_action" sequence="3"/>
+    <menuitem id="college_erp_syllabus_tab" name="Syllabus" parent="college_erp_confi_tab"
+              action="college_syllabus_model_action" sequence="4"/>
+    <menuitem id="college_erp_class_tab" name="Class" parent="college_erp_confi_tab"
+              action="college_class_model_action" sequence="5"/>
+    <!--                     reporting menu-->
+
+    <menuitem id="college_erp_reporting_tab" name="Reporting" parent="college_erp_root" sequence="3"/>
+    <menuitem id="college_erp_reporting_menu" name="Mark sheet" parent="college_erp_reporting_tab"
+              action="college_report_view"/>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+
+    <record id="promotion_form_college_erp" model="ir.ui.view">
+        <field name="name">Promotion</field>
+        <field name="model">promotion.college.erp</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                     <field name="promotion_state" widget="statusbar" statusbar_visible="draft,pending,completed"/>
+                    <button name="getStudentDetails" type="object" string="Make Promotion"
+                            class="btn-primary"
+                            attrs="{'invisible':[('promotion_state', '!=', 'draft')]}"/>
+                       <button name="promote_students" type="object" string="Promote"
+                            class="btn-primary"
+                            attrs="{'invisible': [('promotion_state', '!=', 'pending')]}"/>
+                 </header>
+                <sheet>
+                    <group>
+                        <field name = "promotion_exam"/>
+                        <field name = "promotion_Class"/>
+                        <field name = "promotion_Semester"/>
+                    </group>
+                    <notebook>
+                        <page string="Students">
+                            <field name ="promoted_student_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+      <record id="promotion_tree_college_erp" model="ir.ui.view">
+        <field name="name">Promotion tree</field>
+        <field name="model">promotion.college.erp</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name = "promotion_exam"/>
+                 <field name = "promotion_Class"/>
+                 <field name = "promotion_Semester"/>
+            </tree>
+        </field>
+      </record>
+</odoo>

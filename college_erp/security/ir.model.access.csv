@@ -1,0 +1,12 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+college,student_access,model_student_college_erp,base.group_user,1,1,1,1
+course,course_access,model_course_college_erp,base.group_user,1,1,1,1
+admission,admission_access,model_admission_college_erp,base.group_user,1,1,1,1
+semester,semester_access,model_semester_college_erp,base.group_user,1,1,1,1
+syllabus,syllabus_access,model_syllabus_college_erp,base.group_user,1,1,1,1
+class,class_access,model_class_college_erp,base.group_user,1,1,1,1
+exam,exam_access,model_exam_college_erp,base.group_user,1,1,1,1
+mark_sheet,mark_sheet_access,model_mark_sheet_college_erp,base.group_user,1,1,1,1
+mark_sheet_subjects,mark_sheet_subject_access,model_mark_sheet_subjects_college_erp,base.group_user,1,1,1,1
+promotion,promotion_access,model_promotion_college_erp,base.group_user,1,1,1,1
+reporting_wizard,reporting_access,model_college_marksheet_reporting,base.group_user,1,1,1,1
