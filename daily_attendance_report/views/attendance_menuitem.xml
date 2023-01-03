@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="attendance_report_model_view"
+              name="Daily Attendance Report"
+              parent="hr_attendance.menu_hr_attendance_root"
+              action="attendance_wizard_action"  />
+</odoo>

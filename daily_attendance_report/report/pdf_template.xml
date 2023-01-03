@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="attendance_pdf_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class='page'>
+                    <center>
+                        <h2>Daily Attendance Report</h2>
+                    </center>
+                    <table class='table'>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Check In Time</th>
+                            <th>Check Out Time</th>
+                            <th>Worked hours</th>
+                        </tr>
+                        <t t-foreach="record" t-as="i">
+                              <tr>
+                                    <td>
+                                        <span t-esc="i['name_of_employee']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="i['get_in']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="i['get_out']"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="i['worked_hours']"/>
+                                    </td>
+                                </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="Systray_weather">
+        <div class="new_icon">
+            <div class="icon_div">
+                <div class="toggle-icon" role="button">
+                    <i id='create_so' class="fa fa-cloud" role="img" aria-label="Create Sale Order"/>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

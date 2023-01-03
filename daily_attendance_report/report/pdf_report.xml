@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--    Attendance Pdf Report-->
+    <record id="attendance_pdf_action_report" model="ir.actions.report">
+        <field name="name">Attendance Pdf Reporting</field>
+        <field name="model">attendance.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">daily_attendance_report.attendance_pdf_report_template</field>
+        <field name="report_file">daily_attendance_report.attendance_pdf_report_template</field>
+        <field name="print_report_name">'Attendance Report - %s' % (object.name))</field>
+        <field name="binding_model_id" ref="model_attendance_report_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

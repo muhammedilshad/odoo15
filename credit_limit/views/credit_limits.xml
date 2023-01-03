@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_order_view_inherit" model="ir.ui.view">
+        <field name="name">sale order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr=".//field[@name='payment_term_id']" position="after">
+                <field name="due_amount"/>
+                <field name="hide_button" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_view_inherit1" model="ir.ui.view">
+        <field name="name">sale order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+              <xpath expr="//button[@name='action_quotation_send']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('hide_button', '=', True)]}</attribute>
+                </xpath>
+            <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('hide_button', '=', True)]}</attribute>
+                </xpath>
+        </field>
+    </record>
+
+
+    <record id="res_partner_view_inherit" model="ir.ui.view">
+        <field name="name">Partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr=".//group[@name='banks']" position="before">
+                <group>
+                    <field name="credit_limit"/>
+                    <field name="warning_amount" attrs="{'invisible': [('credit_limit', '=', False)]}"/>
+                    <field name="blocking_amount" attrs="{'invisible': [('credit_limit', '=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
