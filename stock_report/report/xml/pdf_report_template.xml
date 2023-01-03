@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="stock_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class='page'>
+                    <center>
+                        <h2>Daily Stock Report</h2>
+                    </center>
+                    <style>
+                        {
+                    font-family: Arial, Helvetica, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+                    td,th {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    }
+                    th {
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    text-align: left;
+                    background-color: #04AA6D;
+                    color: white;
+                    }
+                    </style>
+                    <table class='table'>
+                        <tr>
+                            <th>Id</th>
+                            <th>Product</th>
+                            <th>On hand Quantity</th>
+                        </tr>
+                        <t t-foreach="query" t-as="i">
+                            <tr>
+                                <t t-if="i['id']">
+                                    <td>
+                                        <span t-esc="i['id']"/>
+                                    </td>
+                                </t>
+                                <t t-if="i['name']">
+                                    <td>
+                                        <span t-esc="i['name']"/>
+                                    </td>
+                                </t>
+                                <t t-if="i['quantity']">
+                                    <td>
+                                        <span t-esc="i['quantity']"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="project_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+        <xpath expr=".//button[@name='551']" position="before">
+            <button string="schedule date" class="btn btn-primary" type="object" name="get_date" data-hotkey="q"/>
+        </xpath>
+            <xpath expr=".//page[@name='description']" position="before">
+                <page string="Date schedules">
+                    <field name="s_date_ids">
+                        <tree>
+                            <field name="month"/>
+                            <field name="year"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </tree>
+                    </field>
+                </page>
+        </xpath>
+    </field>
+</record>
+</odoo>
