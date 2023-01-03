@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="no_code_needed_website_coupon_program" model="coupon.program">
+            <field name="name">website coupon</field>
+            <field name="promo_code_usage">no_code_needed</field>
+            <field name="discount_apply_on">on_order</field>
+            <field name="discount_type">percentage</field>
+            <field name="discount_percentage">0.0</field>
+            <field name="program_type">coupon_program</field>
+        </record>
+    </data>
+</odoo>

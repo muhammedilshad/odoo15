@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_settings_view_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.website</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Website" string="Website" data-key="website">
+                    <h2>Select the Discount to Set in website shop</h2>
+                    <div class="row mt16 o_settings_container" id="website_selection_settings">
+                        <div class="col-xs-12 col-md-6 o_setting_box" id="website">
+                            <div class="o_setting_right_pane">
+                                <label string="Set the Discount in Percentage" for="website_id"/>
+                                <div class="mt16">
+                                    <field name="set_discount"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
