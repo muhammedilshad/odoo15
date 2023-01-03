@@ -1,0 +1,7 @@
+<odoo>
+    <t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('product-img')]" position="inside">
+            <i role="qqq" aria-label="Star Rating" title="Star Rating" class="product-info-button" style="margin-left: 20px"><t t-esc="props.product.prod_rating"/></i>
+        </xpath>
+    </t>
+</odoo>

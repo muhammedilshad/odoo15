@@ -1,0 +1,9 @@
+<template id="template" xml:space="preserve">
+       <t t-name="ClientDetailsEdit" t-inherit="point_of_sale.ClientDetailsEdit" t-inherit-mode="extension" owl="1">
+               <xpath expr="//div[@hasclass=('client-detail')]" position='after'>
+                  <div>
+                      <t t-esc="due_limit"/>
+                  </div>
+           </xpath>
+       </t>
+</template>

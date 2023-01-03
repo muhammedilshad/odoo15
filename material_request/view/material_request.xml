@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="material_request_seq" model="ir.sequence">
+        <field name="name">Material Sequence</field>
+        <field name="code">material.request</field>
+        <field name="prefix">MR/</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="material_request_model_action" model="ir.actions.act_window">
+        <field name="name">Material Request</field>
+        <field name="res_model">material.request</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="material_request_model_form_view" model="ir.ui.view">
+        <field name="name">Material Request</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <form string="form">
+                <header>
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,approval,approved,submitted,rejected"
+                           option="{'clickable': '1'}"/>
+                    <button name="confirm_btn" type="object"
+                            string="Request to manager" states="draft" class="btn-primary"
+                            attrs="{'invisible': [('state','!=','draft')]}"/>
+                    <button name="approve_btn" type="object"
+                            string="Approve by manager" states="approval" class="btn-primary"
+                            groups="material_request.manager_group"
+                            attrs="{'invisible': [('state','!=','approval')]}"/>
+                    <button name="approve_by_head" type="object" string="Approve by head" states="approved"
+                            class="btn-primary"
+                            groups="material_request.head_group"
+                            attrs="{'invisible': [('state','!=','approved')]}"/>
+                    <button name="reject_by_head" type="object"
+                            string="Reject" states="approved" class="btn-primary"
+                            groups="material_request.head_group"
+                            attrs="{'invisible': [('state','!=','approved')]}"/>
+                </header>
+                <sheet>
+                    <div name="smart_button_box" class="oe_button_box">
+                        <button string="Internal Transfer" class="oe_stat_button" type="object" name="smart_button" icon="fa-pencil-square-o">
+                        </button>
+                    </div>
+                    <group>
+                        <field name="employee_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Order Line">
+                            <field name="order_line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="type"/>
+                                    <field name="qty"/>
+                                    <field name="source_location_id"
+                                           attrs="{'invisible': [('type','=','purchase order')]}"/>
+                                    <field name="destination_location_id"
+                                           attrs="{'invisible': [('type','=','purchase order')]}"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="material_request_model_tree_view" model="ir.ui.view">
+        <field name="name">Material Request</field>
+        <field name="model">material.request</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--        menu item-->
+
+    <menuitem id="material_request_root"
+              name="Material Request"/>
+
+    <menuitem id="material_request_main_model_view"
+              name="Material Requests"
+              parent="material_request_root"
+              action="material_request_model_action"/>
+</odoo>
